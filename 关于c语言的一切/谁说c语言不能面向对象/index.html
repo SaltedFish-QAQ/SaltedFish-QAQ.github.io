@@ -14,7 +14,7 @@
         <link rel="canonical" href="https://saltedfish.wiki/%E5%85%B3%E4%BA%8Ec%E8%AF%AD%E8%A8%80%E7%9A%84%E4%B8%80%E5%88%87/%E8%B0%81%E8%AF%B4c%E8%AF%AD%E8%A8%80%E4%B8%8D%E8%83%BD%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.5">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.be71726b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -338,6 +338,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B3%E4%BA%8E%E6%83%B3%E8%A6%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%80%E5%88%87/%E7%94%B5%E5%AE%B9%E5%B1%8F%E4%B9%8B%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        电阻屏的两种映射方式
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -469,180 +481,180 @@
 <h2 id="_4">代码展示<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>talk is cheap，show me the code。</p>
 <p>先是相关的gpio函数指针声明，及gpio对象声明</p>
-<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="kt">uint8_t</span> <span class="p">(</span><span class="o">*</span><span class="n">ExterPort_Check</span><span class="p">)(</span><span class="n">ExterPortInPut</span><span class="p">);</span><span class="c1">//端口检测函数指针</span>
-<span class="k">typedef</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">ExterPort_OutPut</span><span class="p">)(</span><span class="n">GPIO_PinEnum</span><span class="p">,</span> <span class="n">FunctionalState</span><span class="p">);</span><span class="c1">//端口输出函数指针</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">ExterPort_Check</span><span class="p">)(</span><span class="n">ExterPortInPut</span><span class="p">);</span><span class="c1">//端口检测函数指针</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">ExterPort_OutPut</span><span class="p">)(</span><span class="n">GPIO_PinEnum</span><span class="p">,</span><span class="w"> </span><span class="n">FunctionalState</span><span class="p">);</span><span class="c1">//端口输出函数指针</span>
 
-<span class="k">typedef</span> <span class="k">enum</span> 
-<span class="p">{</span>
-   <span class="n">lowlevel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="c1">//端口低电平</span>
-   <span class="n">highlevel</span><span class="p">,</span>
-<span class="p">}</span><span class="n">ExterPortState</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">lowlevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="c1">//端口低电平</span>
+<span class="w">   </span><span class="n">highlevel</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="n">ExterPortState</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">ExterPortObject</span>
-<span class="p">{</span>
-    <span class="n">ExterPortInPut</span> <span class="n">exterPort</span><span class="p">;</span><span class="c1">//端口号</span>
-    <span class="n">ExterPort_Check</span> <span class="n">exterPort_Check</span><span class="p">;</span><span class="c1">//端口检测函数</span>
-    <span class="n">ExterPort_OutPut</span> <span class="n">exterPort_outPut</span><span class="p">;</span><span class="c1">//端口输出函数</span>
-    <span class="n">ExterPortState</span> <span class="n">state</span><span class="p">;</span><span class="c1">//端口状态</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">ExterPortObject</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ExterPortInPut</span><span class="w"> </span><span class="n">exterPort</span><span class="p">;</span><span class="c1">//端口号</span>
+<span class="w">    </span><span class="n">ExterPort_Check</span><span class="w"> </span><span class="n">exterPort_Check</span><span class="p">;</span><span class="c1">//端口检测函数</span>
+<span class="w">    </span><span class="n">ExterPort_OutPut</span><span class="w"> </span><span class="n">exterPort_outPut</span><span class="p">;</span><span class="c1">//端口输出函数</span>
+<span class="w">    </span><span class="n">ExterPortState</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="c1">//端口状态</span>
 <span class="p">}</span><span class="n">ExterPortObject</span><span class="p">;</span><span class="c1">//对象名</span>
 </code></pre></div>
 <p>然后是按键对象及其相关声明</p>
-<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">enum</span> 
-<span class="p">{</span>
-   <span class="n">fallingedge</span><span class="p">,</span><span class="c1">//下降沿</span>
-   <span class="n">risingedge</span><span class="p">,</span><span class="c1">//上升沿</span>
-   <span class="n">longpress</span><span class="p">,</span><span class="c1">//长按</span>
-   <span class="n">press</span><span class="p">,</span><span class="c1">//按下</span>
-   <span class="n">nopress</span><span class="p">,</span><span class="c1">//弹起</span>
-<span class="p">}</span><span class="n">KeyState</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">fallingedge</span><span class="p">,</span><span class="c1">//下降沿</span>
+<span class="w">   </span><span class="n">risingedge</span><span class="p">,</span><span class="c1">//上升沿</span>
+<span class="w">   </span><span class="n">longpress</span><span class="p">,</span><span class="c1">//长按</span>
+<span class="w">   </span><span class="n">press</span><span class="p">,</span><span class="c1">//按下</span>
+<span class="w">   </span><span class="n">nopress</span><span class="p">,</span><span class="c1">//弹起</span>
+<span class="p">}</span><span class="n">KeyState</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">KeyObject</span>
-<span class="p">{</span>
-    <span class="n">ExterPortObject</span> <span class="n">exterPortObject</span><span class="p">;</span><span class="c1">//gpio对象</span>
-    <span class="n">KeyState</span> <span class="n">state</span><span class="p">;</span><span class="c1">//按键状态</span>
-    <span class="kt">uint16_t</span> <span class="n">pressTimer</span><span class="p">;</span><span class="c1">//按键定时器</span>
-    <span class="kt">uint16_t</span> <span class="n">longPressDelay</span><span class="p">;</span><span class="c1">//按键长延时</span>
-<span class="p">}</span><span class="n">KeyObject</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">KeyObject</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ExterPortObject</span><span class="w"> </span><span class="n">exterPortObject</span><span class="p">;</span><span class="c1">//gpio对象</span>
+<span class="w">    </span><span class="n">KeyState</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="c1">//按键状态</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">pressTimer</span><span class="p">;</span><span class="c1">//按键定时器</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">longPressDelay</span><span class="p">;</span><span class="c1">//按键长延时</span>
+<span class="p">}</span><span class="n">KeyObject</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>然后就是相关函数啦</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#define KEYLONGPRESSTIME        700</span><span class="c1">//长按延时</span>
 <span class="cp">#define SAMPLINGTIMES           20</span><span class="c1">//滤波次数</span>
 <span class="cp">#define MINQUALIFIEDTIMES       15</span><span class="c1">//最小滤波合格次数</span>
 
-<span class="kt">void</span> <span class="nf">ExterPortObject_Init</span><span class="p">(</span><span class="n">ExterPortObject</span><span class="o">*</span> <span class="n">pobj</span><span class="p">,</span> <span class="n">ExterPortInPut</span> <span class="n">port</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">KeyObject_Init</span><span class="p">(</span><span class="n">KeyObject</span><span class="o">*</span> <span class="n">pobj</span><span class="p">,</span> <span class="n">ExterPortInPut</span> <span class="n">port</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ExterPortObject_Init</span><span class="p">(</span><span class="n">ExterPortObject</span><span class="o">*</span><span class="w"> </span><span class="n">pobj</span><span class="p">,</span><span class="w"> </span><span class="n">ExterPortInPut</span><span class="w"> </span><span class="n">port</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">KeyObject_Init</span><span class="p">(</span><span class="n">KeyObject</span><span class="o">*</span><span class="w"> </span><span class="n">pobj</span><span class="p">,</span><span class="w"> </span><span class="n">ExterPortInPut</span><span class="w"> </span><span class="n">port</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">ExterPortObject_Init</span><span class="p">(</span><span class="n">ExterPortObject</span><span class="o">*</span> <span class="n">pobj</span><span class="p">,</span> <span class="n">ExterPortInPut</span> <span class="n">port</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort</span> <span class="o">=</span> <span class="n">port</span><span class="p">;</span><span class="c1">//初始化gpio端口</span>
-    <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort_Check</span> <span class="o">=</span> <span class="n">ExterPort_GetInPutLevel</span><span class="p">;</span><span class="c1">//存入端口检测函数</span>
-    <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort_outPut</span> <span class="o">=</span> <span class="n">ExterPort_SetFault</span><span class="p">;</span><span class="c1">//存入端口输出函数，这两个函数由外部实现。</span>
-    <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">highlevel</span><span class="p">;</span><span class="c1">//初始化端口电平，本项目空闲状态为高电平</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ExterPortObject_Init</span><span class="p">(</span><span class="n">ExterPortObject</span><span class="o">*</span><span class="w"> </span><span class="n">pobj</span><span class="p">,</span><span class="w"> </span><span class="n">ExterPortInPut</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">port</span><span class="p">;</span><span class="c1">//初始化gpio端口</span>
+<span class="w">    </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort_Check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExterPort_GetInPutLevel</span><span class="p">;</span><span class="c1">//存入端口检测函数</span>
+<span class="w">    </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort_outPut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExterPort_SetFault</span><span class="p">;</span><span class="c1">//存入端口输出函数，这两个函数由外部实现。</span>
+<span class="w">    </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highlevel</span><span class="p">;</span><span class="c1">//初始化端口电平，本项目空闲状态为高电平</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">KeyObject_Init</span><span class="p">(</span><span class="n">KeyObject</span><span class="o">*</span> <span class="n">pobj</span><span class="p">,</span> <span class="n">ExterPortInPut</span> <span class="n">port</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">ExterPortObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">),</span> <span class="n">port</span><span class="p">);</span><span class="c1">//初始化gpio对象</span>
-    <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">nopress</span><span class="p">;</span><span class="c1">//初始化按键状态</span>
-    <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//初始化按键定时器</span>
-    <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">longPressDelay</span> <span class="o">=</span> <span class="n">KEYLONGPRESSTIME</span><span class="p">;</span><span class="c1">//初始化长按延时</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">KeyObject_Init</span><span class="p">(</span><span class="n">KeyObject</span><span class="o">*</span><span class="w"> </span><span class="n">pobj</span><span class="p">,</span><span class="w"> </span><span class="n">ExterPortInPut</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ExterPortObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">),</span><span class="w"> </span><span class="n">port</span><span class="p">);</span><span class="c1">//初始化gpio对象</span>
+<span class="w">    </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nopress</span><span class="p">;</span><span class="c1">//初始化按键状态</span>
+<span class="w">    </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="c1">//初始化按键定时器</span>
+<span class="w">    </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">longPressDelay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KEYLONGPRESSTIME</span><span class="p">;</span><span class="c1">//初始化长按延时</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="k">static</span> <span class="n">ExterPortState</span> <span class="nf">ExterPortObject_GetState</span><span class="p">(</span><span class="n">ExterPortObject</span><span class="o">*</span> <span class="n">pobj</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">ExterPortState</span><span class="w"> </span><span class="nf">ExterPortObject_GetState</span><span class="p">(</span><span class="n">ExterPortObject</span><span class="o">*</span><span class="w"> </span><span class="n">pobj</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">//本函数使用的滤波功能有限，仅仅只能滤掉高频部分而低频抖动无能为力，尚待更改。如果没有更改，我菜，我懒</span>
-<span class="k">static</span> <span class="n">ExterPortState</span> <span class="nf">ExterPortObject_GetState</span><span class="p">(</span><span class="n">ExterPortObject</span><span class="o">*</span> <span class="n">pobj</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">ExterPortState</span> <span class="n">state</span> <span class="o">=</span> <span class="n">highlevel</span><span class="p">;</span>
-    <span class="kt">uint8_t</span> <span class="n">times</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">ExterPortState</span><span class="w"> </span><span class="nf">ExterPortObject_GetState</span><span class="p">(</span><span class="n">ExterPortObject</span><span class="o">*</span><span class="w"> </span><span class="n">pobj</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ExterPortState</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highlevel</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SAMPLINGTIMES</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//连续检测20次gpio电平</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort_Check</span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort</span><span class="p">))</span>
-        <span class="p">{</span>
-            <span class="n">times</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SAMPLINGTIMES</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//连续检测20次gpio电平</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort_Check</span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPort</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">times</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">times</span> <span class="o">&gt;=</span> <span class="n">MINQUALIFIEDTIMES</span><span class="p">)</span><span class="c1">//当合格次数大于15次时认为检测成功</span>
-    <span class="p">{</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="n">lowlevel</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="n">highlevel</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">times</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">MINQUALIFIEDTIMES</span><span class="p">)</span><span class="c1">//当合格次数大于15次时认为检测成功</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lowlevel</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highlevel</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="k">return</span> <span class="n">state</span><span class="p">;</span><span class="c1">//返回检测电平</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="c1">//返回检测电平</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">KeyScanInput</span><span class="p">(</span><span class="n">KeyObject</span><span class="o">*</span> <span class="n">pobj</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">KeyScanInput</span><span class="p">(</span><span class="n">KeyObject</span><span class="o">*</span><span class="w"> </span><span class="n">pobj</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">KeyScanInput</span><span class="p">(</span><span class="n">KeyObject</span><span class="o">*</span> <span class="n">pobj</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">ExterPortState</span> <span class="n">currentPortLevel</span> <span class="o">=</span> <span class="n">highlevel</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">KeyScanInput</span><span class="p">(</span><span class="n">KeyObject</span><span class="o">*</span><span class="w"> </span><span class="n">pobj</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ExterPortState</span><span class="w"> </span><span class="n">currentPortLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highlevel</span><span class="p">;</span><span class="w"></span>
 
-    <span class="n">currentPortLevel</span> <span class="o">=</span> <span class="n">ExterPortObject_GetState</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">));</span><span class="c1">//检测按键电平</span>
+<span class="w">    </span><span class="n">currentPortLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExterPortObject_GetState</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">));</span><span class="c1">//检测按键电平</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">currentPortLevel</span> <span class="o">!=</span> <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span><span class="p">)</span><span class="c1">//当当前检测电平不等于原电平时，开始进行上下边沿判断</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">highlevel</span><span class="p">)</span><span class="c1">//因本项目常态为高电平，所以此处为下降沿。即按键下降边沿</span>
-        <span class="p">{</span>
-            <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">fallingedge</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">lowlevel</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">risingedge</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">currentPortLevel</span><span class="p">;</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentPortLevel</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span><span class="p">)</span><span class="c1">//当当前检测电平不等于原电平时，开始进行上下边沿判断</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">highlevel</span><span class="p">)</span><span class="c1">//因本项目常态为高电平，所以此处为下降沿。即按键下降边沿</span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fallingedge</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">lowlevel</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">risingedge</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPortLevel</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">lowlevel</span><span class="p">)</span><span class="c1">//按下时进行按键延时即可</span>
-    <span class="p">{</span>
-        <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">press</span><span class="p">;</span>
-        <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">highlevel</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">nopress</span><span class="p">;</span>
-        <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">lowlevel</span><span class="p">)</span><span class="c1">//按下时进行按键延时即可</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">press</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">exterPortObject</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">highlevel</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nopress</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span> <span class="o">&gt;=</span> <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">longPressDelay</span><span class="p">)</span><span class="c1">//当按键定时器值达到长按延时时，设置为长按状态</span>
-    <span class="p">{</span>
-        <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">longpress</span><span class="p">;</span>
-        <span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">longPressDelay</span><span class="p">)</span><span class="c1">//当按键定时器值达到长按延时时，设置为长按状态</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">longpress</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">pobj</span><span class="o">-&gt;</span><span class="n">pressTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>如何使用</p>
 <div class="highlight"><pre><span></span><code><span class="c1">//先声明</span>
-<span class="n">KeyObject</span> <span class="n">gStopKeyCheck</span><span class="p">;</span>
-<span class="n">KeyObject</span> <span class="n">gRun1KeyCheck</span><span class="p">;</span>
-<span class="n">KeyObject</span> <span class="n">gRun2KeyCheck</span><span class="p">;</span>
-<span class="n">KeyObject</span> <span class="n">gAlarmSignalCheck</span><span class="p">;</span>
-<span class="n">KeyObject</span> <span class="n">gPauseSignalCheck</span><span class="p">;</span>
-<span class="n">KeyObject</span> <span class="n">gPauseSignalGenerate</span><span class="p">;</span>
+<span class="n">KeyObject</span><span class="w"> </span><span class="n">gStopKeyCheck</span><span class="p">;</span><span class="w"></span>
+<span class="n">KeyObject</span><span class="w"> </span><span class="n">gRun1KeyCheck</span><span class="p">;</span><span class="w"></span>
+<span class="n">KeyObject</span><span class="w"> </span><span class="n">gRun2KeyCheck</span><span class="p">;</span><span class="w"></span>
+<span class="n">KeyObject</span><span class="w"> </span><span class="n">gAlarmSignalCheck</span><span class="p">;</span><span class="w"></span>
+<span class="n">KeyObject</span><span class="w"> </span><span class="n">gPauseSignalCheck</span><span class="p">;</span><span class="w"></span>
+<span class="n">KeyObject</span><span class="w"> </span><span class="n">gPauseSignalGenerate</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">//再初始化</span>
-<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gRun1KeyCheck</span><span class="p">,</span> <span class="n">Port_X0</span><span class="p">);</span>
-<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gRun2KeyCheck</span><span class="p">,</span> <span class="n">Port_X1</span><span class="p">);</span>
-<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gStopKeyCheck</span><span class="p">,</span> <span class="n">Port_X2</span><span class="p">);</span>
-<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gAlarmSignalCheck</span><span class="p">,</span> <span class="n">Port_X3</span><span class="p">);</span>
-<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gPauseSignalCheck</span><span class="p">,</span> <span class="n">Port_X4</span><span class="p">);</span>
-<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gPauseSignalGenerate</span><span class="p">,</span> <span class="p">(</span><span class="n">ExterPortInPut</span><span class="p">)</span><span class="n">EXTER_PORT_Y0</span><span class="p">);</span>
+<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gRun1KeyCheck</span><span class="p">,</span><span class="w"> </span><span class="n">Port_X0</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gRun2KeyCheck</span><span class="p">,</span><span class="w"> </span><span class="n">Port_X1</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gStopKeyCheck</span><span class="p">,</span><span class="w"> </span><span class="n">Port_X2</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gAlarmSignalCheck</span><span class="p">,</span><span class="w"> </span><span class="n">Port_X3</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gPauseSignalCheck</span><span class="p">,</span><span class="w"> </span><span class="n">Port_X4</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyObject_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gPauseSignalGenerate</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">ExterPortInPut</span><span class="p">)</span><span class="n">EXTER_PORT_Y0</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">//然后周期性的调用扫描函数即可</span>
-<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gRun1KeyCheck</span><span class="p">);</span>
-<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gRun2KeyCheck</span><span class="p">);</span>
-<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gStopKeyCheck</span><span class="p">);</span>
-<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gAlarmSignalCheck</span><span class="p">);</span>
-<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gPauseSignalCheck</span><span class="p">);</span>
+<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gRun1KeyCheck</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gRun2KeyCheck</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gStopKeyCheck</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gAlarmSignalCheck</span><span class="p">);</span><span class="w"></span>
+<span class="n">KeyScanInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gPauseSignalCheck</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">//依据对应的按键状态进行功能实现</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">gStopKeyCheck</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">longpress</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">Motor_ClearLapCount</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gStopKeyCheck</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">longpress</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Motor_ClearLapCount</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="k">if</span> <span class="p">(</span><span class="n">gStopKeyCheck</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">fallingedge</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// printf(&quot;stop mode\n&quot;);</span>
-    <span class="k">return</span> <span class="n">Motor_StopMode</span><span class="p">;</span><span class="c1">//停机状态</span>
-<span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">gRun2KeyCheck</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">fallingedge</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// printf(&quot;start mode 2\n&quot;);</span>
-    <span class="k">return</span> <span class="n">Motor_StartMode2</span><span class="p">;</span><span class="c1">//启动模式2</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">gRun1KeyCheck</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">fallingedge</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// printf(&quot;start mode 1\n&quot;);</span>
-    <span class="k">return</span> <span class="n">Motor_StartMode1</span><span class="p">;</span><span class="c1">//启动模式1</span>
-<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gStopKeyCheck</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fallingedge</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// printf(&quot;stop mode\n&quot;);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Motor_StopMode</span><span class="p">;</span><span class="c1">//停机状态</span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gRun2KeyCheck</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fallingedge</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// printf(&quot;start mode 2\n&quot;);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Motor_StartMode2</span><span class="p">;</span><span class="c1">//启动模式2</span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gRun1KeyCheck</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fallingedge</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// printf(&quot;start mode 1\n&quot;);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Motor_StartMode1</span><span class="p">;</span><span class="c1">//启动模式1</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="_5">结语<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>本次主要探索可以使用某种方式达到面向对象的某些地步，但依然很有限。也只是站在巨人的肩膀上捡石头罢了，但私以为既然是一次值得记下来的事情。遂有此篇，好了说了这么多对象，希望大伙都有对象。</p>
@@ -716,10 +728,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56a63758.min.js"></script>
       
         <script src="../../js/cnzz-statistics.js"></script>
       
